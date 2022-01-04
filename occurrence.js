@@ -63,35 +63,52 @@ const data = [
 let words =
   'This is a TEST, WE ARE here testing out this DATA FOR the DSA INTERVIEW. If you cannot PASS this interview... you will not get a certificate. BE SURE to study hard!';
 
-const map = {};
+const results = {};
 
-const map1 = {};
-
-data.forEach((sentence) => {
-  let newSentence = sentence.toLowerCase();
-  // console.log(newSentence);
-  newSentence = newSentence.replace(/[.,!]/g, '').split(' ');
-  newSentence.forEach((word) => {
-    if (map1[word]) {
-      map1[word]++;
+data.forEach((line) => {
+  line = line.toLowerCase();
+  // console.log(item);
+  let words = line.replace(/[.,!]/g, '').split(' ');
+  // console.log(words);
+  words.forEach((word) => {
+    if (results[word]) {
+      results[word]++;
     } else {
-      map1[word] = 1;
+      results[word] = 1;
     }
   });
 });
 
-words = words.toLowerCase();
-// console.log(words);
-words = words.replace(/[.,!]/g, '').split(' ');
-// console.log(words);
+console.log(results);
 
-words.forEach((word) => {
-  if (map[word]) {
-    map[word]++;
-  } else {
-    map[word] = 1;
-  }
-});
+// const map1 = {};
+
+// data.forEach((sentence) => {
+//   sentence = sentence.toLowerCase();
+//   console.log(sentence);
+//   let words = sentence.replace(/[.,!]/g, '').split(' ');
+//   words.forEach((word) => {
+//     if (map1[word]) {
+//       map1[word]++;
+//     } else {
+//       map1[word] = 1;
+//     }
+//   });
+// });
+
+// const map1 = {};
+// words = words.toLowerCase();
+// // console.log(words);
+// words = words.replace(/[.,!]/g, '').split(' ');
+// // console.log(words);
+
+// words.forEach((word) => {
+//   if (map[word]) {
+//     map[word]++;
+//   } else {
+//     map[word] = 1;
+//   }
+// });
 
 // console.log(map);
-console.log(map1);
+// console.log(map1);
