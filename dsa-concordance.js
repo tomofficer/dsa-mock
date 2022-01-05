@@ -1,3 +1,33 @@
+//INSTRUCTIONS :
+/*
+Write a function named concordance that accepts an array of strings representing a body of text and returns a concordance of that text. Note the following:
+
+do not include duplicate line numbers for words appearing more than once on a single line.
+the concordance should be case insensitive. That is, the words "Everyone" and "everyone" should be counted as the same word.
+hyphenated words are considered a single word. For example "non-self-governing" is a single word.
+the concordance does not have to be sorted.
+You may find that you need to break up a long piece of text into individual words. Using the .split() method of the String object is useful for this purpose. The .split() method accepts a regular expression that makes it possible to describe complex rules for word endings. Here is one such expression that you may use:
+
+/[\s.,';]/
+For example, the following snippet of code:
+
+"Everyone has the right to life, liberty and security of person.".split(/[\s.,';]/)
+splits the given text into individual words by spaces, full stops, commas, single quotes and semi-colons. The result is an array:
+
+[
+  'Everyone', 'has',
+  'the',      'right',
+  'to',       'life',
+  '',         'liberty',
+  'and',      'security',
+  'of',       'person',
+  ''
+]
+Notice that there are some empty strings in that result. Those are not valid words and should not appear in the final output.
+
+*/
+
+//DATA :
 const data = [
   'All human beings are born free and equal in dignity and rights.',
   'They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.',
@@ -60,74 +90,34 @@ const data = [
   'Nothing in this Declaration may be interpreted as implying for any State, group or person any right to engage in any activity or to perform any act aimed at the destruction of any of the rights and freedoms set forth herein.',
 ];
 
-let words =
-  'This is a TEST, WE ARE here testing out this DATA FOR the DSA INTERVIEW. If you cannot PASS this interview... you will not get a certificate. BE SURE to study hard!';
+//SOLUTION :
 
-const results = {};
+const concordance = (data) => {
+  // console.log(data);
+  const results = {};
 
-data.forEach((line) => {
-  line = line.toLowerCase();
-  // console.log(item);
-  let words = line.replace(/[.,!]/g, '').split(' ');
-  // console.log(words);
-  words.forEach((word) => {
-    if (results[word]) {
-      results[word]++;
-    } else {
-      results[word] = 1;
-    }
+  data.forEach((line, index) => {
+    // console.log(line);
+    line = line.toLowerCase();
+    // console.log(line);
+    let words = line.split(/[\s.,';]/);
+    // console.log(words);
+    words = words.filter((e) => e);
+    // console.log(words);
+
+    words.forEach((word) => {
+      if (results[word]) {
+        if (!results[word].includes(index)) {
+          results[word].push(index);
+        }
+      } else {
+        results[word] = [index];
+      }
+    });
   });
-});
+  console.log(results);
+  return results;
+};
 
-console.log(results);
-
-// const map1 = {};
-
-// data.forEach((sentence) => {
-//   sentence = sentence.toLowerCase();
-//   console.log(sentence);
-//   let words = sentence.replace(/[.,!]/g, '').split(' ');
-//   words.forEach((word) => {
-//     if (map1[word]) {
-//       map1[word]++;
-//     } else {
-//       map1[word] = 1;
-//     }
-//   });
-// });
-
-// const map1 = {};
-// words = words.toLowerCase();
-// // console.log(words);
-// words = words.replace(/[.,!]/g, '').split(' ');
-// // console.log(words);
-
-// words.forEach((word) => {
-//   if (map[word]) {
-//     map[word]++;
-//   } else {
-//     map[word] = 1;
-//   }
-// });
-
-// console.log(map);
-// console.log(map1);
-
-// ACTUAL ANSWER
-const array = [...array1, ...array2];
-
-let obj = {};
-
-array.forEach(({ city, rainfall }) => {
-  if (obj[city]) {
-    obj[city] += rainfall;
-  } else {
-    obj[city] = rainfall;
-  }
-});
-
-let result = Object.entries(obj).map(([city, rainfall]) => {
-  return { city, rainfall };
-});
-
-console.log(result);
+//CALL THE FUNCTION
+concordance(data);
