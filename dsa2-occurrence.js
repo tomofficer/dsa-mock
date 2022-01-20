@@ -30,8 +30,9 @@ const array2 = [
   { city: 'portland', rainfall: 10 },
 ];
 
-// const array1 = link1.asArray();
-// const array2 = link2.asArray();
+
+const array1 = link1.asArray();
+const array2 = link2.asArray();
 
 const array = [...array1, ...array2];
 // console.log(array)
