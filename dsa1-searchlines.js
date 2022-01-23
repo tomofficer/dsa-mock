@@ -17,7 +17,8 @@
 7. iterate through words array, for each word push ...concordance[word] to results array
 8. get rid of duplicates by creating a new set and passing in results
 9. convert set back to an array
-10. return a map through this new array and for each line return data[line]
+10. return a map through this new array
+11. for each line return the corresponding data[line]
 */
 
 //LONGER
